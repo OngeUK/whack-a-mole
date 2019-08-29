@@ -1,0 +1,12 @@
+{
+	"include": ["./src/*"],
+	"compilerOptions": {
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"module": "es6",
+		"moduleResolution": "node",
+		"target": "es6",
+		"jsx": "react",
+		"jsxFactory": "h"
+	}
+}
