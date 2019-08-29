@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "preact/hooks";
+import {useEffect, useRef} from "preact/hooks";
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 export function useInterval(callback: any, delay: number | null) {
@@ -22,3 +22,25 @@ export function useInterval(callback: any, delay: number | null) {
 		}
 	}, [delay]);
 }
+
+export interface Context {
+	playerScore: number;
+	updateScore: Function;
+	gameOver: boolean;
+	setGameOverState: Function;
+	disableTitleScreen: Function;
+}
+
+export const defaultContext: Context = {
+	playerScore: 0,
+	updateScore: () => {
+		return;
+	},
+	gameOver: false,
+	setGameOverState: () => {
+		return;
+	},
+	disableTitleScreen: () => {
+		return;
+	}
+};

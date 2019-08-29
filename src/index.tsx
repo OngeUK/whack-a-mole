@@ -1,33 +1,13 @@
 import {createContext, h, render} from "preact";
+import "preact/debug";
 import {useState} from "preact/hooks";
 import {createGlobalStyle} from "styled-components";
 import GameOver from "./game-over";
 import Grid from "./grid";
 import TitleScreen from "./title-screen";
+import {Context, defaultContext} from "./_utils";
 
-interface Context {
-	playerScore: number;
-	updateScore: Function;
-	gameOver: boolean;
-	setGameOverState: Function;
-	disableTitleScreen: Function;
-}
-
-export const GameContext = createContext<[Context]>([
-	{
-		playerScore: 0,
-		updateScore: () => {
-			return;
-		},
-		gameOver: false,
-		setGameOverState: () => {
-			return;
-		},
-		disableTitleScreen: () => {
-			return;
-		}
-	}
-]);
+export const GameContext = createContext<[Context]>([defaultContext]);
 
 function Game() {
 	// Set our states

@@ -1,19 +1,21 @@
 import {Fragment, h} from "preact";
 import {useContext, useState} from "preact/hooks";
 import {GameContext} from ".";
-import {useInterval} from "./utils";
+import {useInterval} from "./_utils";
 
 const Clock = () => {
-	const [timeRemaining, countdown] = useState(5),
+	const [timeRemaining, countdown] = useState(30),
 		[context] = useContext(GameContext),
 		{setGameOverState} = context;
 
 	useInterval(
 		() => {
-			countdown(timeRemaining - 1);
+			const newTime = timeRemaining - 1;
 
-			if (timeRemaining - 1 === 0) {
-				// UseRef here?
+			countdown(newTime);
+
+			// Out of time
+			if (newTime === 0) {
 				setGameOverState(true);
 			}
 		},
