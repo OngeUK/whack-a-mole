@@ -1,12 +1,12 @@
-import {Fragment, h} from "preact";
-import {useContext, useState} from "preact/hooks";
-import {GameContext} from ".";
-import {useInterval} from "./_utils";
+import { Fragment, h } from "preact";
+import { useContext, useState } from "preact/hooks";
+import { GameContext } from ".";
+import { useInterval } from "./_utils";
 
 const Clock = () => {
 	const [timeRemaining, countdown] = useState(30),
 		[context] = useContext(GameContext),
-		{setGameOverState} = context;
+		{ setGameOverState } = context;
 
 	useInterval(
 		() => {

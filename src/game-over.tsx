@@ -1,10 +1,10 @@
-import {Fragment, h} from "preact";
-import {useContext} from "preact/hooks";
-import {GameContext} from ".";
+import { Fragment, h } from "preact";
+import { useContext } from "preact/hooks";
+import { GameContext } from ".";
 
 const GameOver = () => {
 	const [context] = useContext(GameContext),
-		{playerScore, updateScore, setGameOverState} = context;
+		{ playerScore, updateScore, setGameOverState } = context;
 
 	return (
 		<Fragment>

@@ -1,13 +1,13 @@
-import {createContext, h, render} from "preact";
+import { createContext, h, render } from "preact";
 import "preact/debug";
-import {useState} from "preact/hooks";
-import {createGlobalStyle} from "styled-components";
+import { useState } from "preact/hooks";
+import { createGlobalStyle } from "styled-components";
 import GameOver from "./game-over";
 import Grid from "./grid";
 import TitleScreen from "./title-screen";
-import {Context, defaultContext} from "./_utils";
+import { defaultContext, IContext } from "./_utils";
 
-export const GameContext = createContext<[Context]>([defaultContext]);
+export const GameContext = createContext<[IContext]>([defaultContext]);
 
 function Game() {
 	// Set our states
@@ -19,7 +19,7 @@ function Game() {
 	const output = showTitleScreen ? <TitleScreen /> : gameOver ? <GameOver /> : <Grid />;
 
 	return (
-		<GameContext.Provider value={[{playerScore, updateScore, gameOver, setGameOverState, disableTitleScreen}]}>
+		<GameContext.Provider value={[{ playerScore, updateScore, gameOver, setGameOverState, disableTitleScreen }]}>
 			<GlobalStyle />
 			{output}
 		</GameContext.Provider>
@@ -34,10 +34,10 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	body {
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-		margin: 0;
-		display: grid;
 		align-content: center;
+		display: grid;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+		margin: 0;
 	}
 `;
 

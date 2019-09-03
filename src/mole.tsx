@@ -1,15 +1,15 @@
-import {Fragment, h} from "preact";
-import {useContext, useState} from "preact/hooks";
+import { Fragment, h } from "preact";
+import { useContext, useState } from "preact/hooks";
 import styled from "styled-components";
-import {GameContext} from ".";
-import {useInterval} from "./_utils";
+import { GameContext } from ".";
+import { useInterval } from "./_utils";
 
 const Mole = () => {
 	const [isActive, setActiveState] = useState(false),
 		[delay, setDelay] = useState(setIntervalDuration(1500, 3000)),
 		[isRunning, setIsRunning] = useState(true),
 		[context] = useContext(GameContext),
-		{playerScore, updateScore, setGameOverState} = context;
+		{ playerScore, updateScore, setGameOverState } = context;
 
 	useInterval(
 		() => {
@@ -52,8 +52,8 @@ function setIntervalDuration(min: number, max: number) {
 }
 
 const MoleLabel = styled.label`
+	overflow: hiddn;
 	place-self: end center;
-	overflow: hidden;
 `;
 
 const MoleCheckbox = styled.input`

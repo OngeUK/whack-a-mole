@@ -4,7 +4,7 @@ import { GameContext } from ".";
 
 const TitleScreen = () => {
 	const [context] = useContext(GameContext),
-		{disableTitleScreen} = context;
+		{ disableTitleScreen } = context;
 
 	function play() {
 		disableTitleScreen(false);
@@ -14,7 +14,7 @@ const TitleScreen = () => {
 		<Fragment>
 			<h1>Whack-a-mole!</h1>
 			<br />
-			<button type="button" onClick={() => play()}>
+			<button type="button" onClick={play}>
 				Play
 			</button>
 		</Fragment>
@@ -22,8 +22,8 @@ const TitleScreen = () => {
 };
 
 // const MoleLabel = styled.label`
-// 	place-self: end center;
 // 	overflow: hidden;
+// 	place-self: end center;
 // `;
 
 export default TitleScreen;
