@@ -10,13 +10,20 @@
 	},
 	"devDependencies": {
 		"@types/styled-components": "4.1.18",
+		"babel-core": "^6.26.3",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-react": "^6.24.1",
 		"parcel-bundler": "1.12.3",
+		"parcel-plugin-bundle-visualiser": "^1.2.0",
+		"parcel-plugin-imagemin": "3.0.0",
+		"parcel-plugin-sw-cache": "0.3.1",
 		"prettier": "1.18.2",
+		"rimraf": "2.6.3",
 		"stylelint": "10.1.0",
-		"stylelint-processor-styled-components": "1.8.0",
-		"stylelint-config-styled-components": "0.1.1",
 		"stylelint-config-recommended": "2.2.0",
+		"stylelint-config-styled-components": "0.1.1",
 		"stylelint-order": "0.8.1",
+		"stylelint-processor-styled-components": "1.8.0",
 		"tslint": "5.19.0",
 		"tslint-config-prettier": "1.18.0",
 		"tslint-react": "4.0.0",
@@ -24,7 +31,7 @@
 	},
 	"scripts": {
 		"start": "parcel ./public/index.html --open",
-		"build": "parcel build ./public/index.html"
+		"build": "rimraf dist && parcel build ./public/index.html --no-source-maps"
 	},
 	"alias": {
 		"react": "preact/compat",
@@ -35,5 +42,11 @@
 		"not dead",
 		"not ie <= 11",
 		"not op_mini all"
-	]
+	],
+	"cache": {
+		"disablePlugin": false,
+		"inDev": false,
+		"strategy": "default",
+		"clearDist": false
+	}
 }

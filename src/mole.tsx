@@ -52,7 +52,7 @@ function setIntervalDuration(min: number, max: number) {
 }
 
 const MoleLabel = styled.label`
-	overflow: hiddn;
+	overflow: hidden;
 	place-self: end center;
 `;
 

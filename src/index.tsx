@@ -1,5 +1,9 @@
+// Enable devtools
+if (process.env.NODE_ENV === "development") {
+	require("preact/debug");
+}
+
 import { createContext, h, render } from "preact";
-import "preact/debug";
 import { useState } from "preact/hooks";
 import { createGlobalStyle } from "styled-components";
 import GameOver from "./game-over";
@@ -41,5 +45,9 @@ const GlobalStyle = createGlobalStyle`
 	}
 `;
 
-const rootElement = document.getElementById("root");
+// Remove loader from DOM
+document.getElementById("loader").remove();
+
+// Render our app
+const rootElement = document.getElementById("app");
 render(<Game />, rootElement);

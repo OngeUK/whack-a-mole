@@ -3,10 +3,11 @@
 	"compilerOptions": {
 		"sourceMap": true,
 		"noImplicitAny": true,
-		"module": "es6",
+		"module": "esnext",
 		"moduleResolution": "node",
-		"target": "es6",
-		"jsx": "react",
-		"jsxFactory": "h"
+		"target": "es2018",
+		"jsx": "preserve",
+		"jsxFactory": "h",
+		"lib": ["esnext", "dom"]
 	}
 }

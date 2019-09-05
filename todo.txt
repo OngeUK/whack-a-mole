@@ -1,0 +1,6 @@
+
+
+BUILD
+=====
+Code splitting
+- Dynamic imports or suspense/lazy [https://preactjs.com/guide/v10/switching-to-preact#suspense-experimental]
