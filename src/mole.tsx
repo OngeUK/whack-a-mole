@@ -1,4 +1,4 @@
-import { Fragment, h } from "preact";
+import { h } from "preact";
 import { useContext, useState } from "preact/hooks";
 import styled from "styled-components";
 import { GameContext } from ".";
@@ -9,14 +9,20 @@ const Mole = () => {
 		[delay, setDelay] = useState(setIntervalDuration(1500, 3000)),
 		[isRunning, setIsRunning] = useState(true),
 		[context] = useContext(GameContext),
-		{ playerScore, updateScore, setGameOverState } = context;
+		{ timeRemaining, playerScore, updateScore, setCountdownState } = context;
 
 	useInterval(
 		() => {
 			setActiveState(!isActive);
+			setCountdownState(true);
 		},
 		isRunning ? delay : null
 	);
+
+	if (timeRemaining === 0) {
+		setIsRunning(false);
+		setActiveState(false);
+	}
 
 	// Player has successfully whacks a mole
 	function moleHit() {
@@ -37,12 +43,10 @@ const Mole = () => {
 	}
 
 	return (
-		<Fragment>
-			<MoleLabel>
-				<MoleCheckbox type="checkbox" checked={!isActive} disabled={!isActive} />
-				<MoleSprite onMouseDown={moleHit} onTouchStart={moleHit} />
-			</MoleLabel>
-		</Fragment>
+		<MoleLabel>
+			<MoleCheckbox type="checkbox" checked={!isActive} disabled={!isActive} />
+			<MoleSprite onMouseDown={moleHit} onTouchStart={moleHit} />
+		</MoleLabel>
 	);
 };
 
@@ -52,6 +56,7 @@ function setIntervalDuration(min: number, max: number) {
 }
 
 const MoleLabel = styled.label`
+	height: 100%;
 	overflow: hidden;
 	place-self: end center;
 `;
@@ -65,13 +70,10 @@ const MoleCheckbox = styled.input`
 const MoleSprite = styled.div`
 	background: red;
 	cursor: pointer;
-	width: 17vw;
-
-	&::before {
-		content: "";
-		display: block;
-		padding-top: 130%;
-	}
+	height: 100%;
+	max-width: 12rem;
+	min-width: 8rem;
+	width: calc(15vw + 5rem);
 
 	input + & {
 		transform: translate3d(0, 0, 0);

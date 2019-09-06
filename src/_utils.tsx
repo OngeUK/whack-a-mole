@@ -1,19 +1,18 @@
 import { useEffect, useRef } from "preact/hooks";
+import { gameLength } from ".";
 
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 export function useInterval(callback: any, delay: number | null) {
-	const savedCallback = useRef();
+	const savedCallback: ISavedCallback = useRef();
 
 	// Remember the latest function.
 	useEffect(() => {
-		// @ts-ignore
 		savedCallback.current = callback;
 	}, [callback]);
 
 	// Set up the interval.
 	useEffect(() => {
 		function tick() {
-			// @ts-ignore
 			savedCallback.current();
 		}
 		if (delay !== null) {
@@ -23,23 +22,39 @@ export function useInterval(callback: any, delay: number | null) {
 	}, [delay]);
 }
 
+interface ISavedCallback {
+	current?: Function;
+}
+
 export interface IContext {
-	playerScore: number;
-	updateScore: Function;
-	gameOver: boolean;
-	setGameOverState: Function;
+	countdown: Function;
 	disableTitleScreen: Function;
+	isCountdownActive: boolean;
+	isGameOver: boolean;
+	playerScore: number;
+	setGameOverState: Function;
+	setCountdownState: Function;
+	timeRemaining: number;
+	updateScore: Function;
 }
 
 export const defaultContext: IContext = {
+	countdown: () => {
+		return;
+	},
 	disableTitleScreen: () => {
 		return;
 	},
-	gameOver: false,
+	isCountdownActive: false,
+	isGameOver: false,
 	playerScore: 0,
+	setCountdownState: () => {
+		return;
+	},
 	setGameOverState: () => {
 		return;
 	},
+	timeRemaining: gameLength,
 	updateScore: () => {
 		return;
 	}

@@ -15,7 +15,7 @@ const TitleScreen = () => {
 			<h1>Whack-a-mole!</h1>
 			<br />
 			<button type="button" onClick={play}>
-				Play
+				Let's go!
 			</button>
 		</Fragment>
 	);

@@ -1,10 +1,10 @@
 import { Fragment, h } from "preact";
 import { useContext } from "preact/hooks";
-import { GameContext } from ".";
+import { GameContext, gameLength } from ".";
 
 const GameOver = () => {
 	const [context] = useContext(GameContext),
-		{ playerScore, updateScore, setGameOverState } = context;
+		{ playerScore, updateScore, setGameOverState, countdown } = context;
 
 	return (
 		<Fragment>
@@ -15,6 +15,7 @@ const GameOver = () => {
 				onClick={() => {
 					updateScore(0);
 					setGameOverState(false);
+					countdown(gameLength);
 				}}
 			>
 				Again!

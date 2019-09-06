@@ -26,10 +26,12 @@ function Grid() {
 
 const GridArea = styled.main`
 	display: grid;
-	grid-gap: 2vh;
+	grid-gap: 5vh;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
 	height: 90vh;
+	max-width: 1440px;
+	width: 90vw;
 
 	*:nth-child(3) {
 		grid-column: 1 / span 2;
