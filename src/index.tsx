@@ -51,6 +51,7 @@ const GlobalStyle = createGlobalStyle`
 	html,
 	body {
 		height: 100%;
+		overflow: hidden;
 		width: 100%;
 	}
 

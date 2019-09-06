@@ -14,11 +14,11 @@ function Grid() {
 			<Clock />
 			<Scoreboard>{playerScore}</Scoreboard>
 			<GridArea>
-				<Mole />
-				<Mole />
-				<Mole />
-				<Mole />
-				<Mole />
+				<Mole id="mole-1" />
+				<Mole id="mole-2" />
+				<Mole id="mole-3" />
+				<Mole id="mole-4" />
+				<Mole id="mole-5" />
 			</GridArea>
 		</Fragment>
 	);
