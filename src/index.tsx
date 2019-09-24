@@ -8,6 +8,7 @@ import { useState } from "preact/hooks";
 import { createGlobalStyle } from "styled-components";
 import GameOver from "./game-over";
 import Grid from "./grid";
+import Soundboard from "./soundboard";
 import TitleScreen from "./title-screen";
 import { defaultContext, IContext } from "./_utils";
 
@@ -42,6 +43,7 @@ function Game() {
 			]}
 		>
 			<GlobalStyle />
+			<Soundboard />
 			{output}
 		</GameContext.Provider>
 	);
