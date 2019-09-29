@@ -6,6 +6,10 @@ Hit box
 - Use css variables for mole size and use to work out size of hit box
 - Animate contents of hit box on each hit
 
+localStorage
+- High score
+- isMuted state
+
 
 Deploy
 ======

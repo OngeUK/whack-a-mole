@@ -13,7 +13,7 @@ import TitleScreen from "./title-screen";
 import { defaultContext, IContext } from "./_utils";
 
 export const GameContext = createContext<[IContext]>([defaultContext]);
-export const gameLength = 30;
+export const gameLength = 3;
 
 function Game() {
 	// Set our states
@@ -21,7 +21,8 @@ function Game() {
 		[timeRemaining, countdown] = useState(gameLength),
 		[playerScore, updateScore] = useState(0),
 		[isCountdownActive, setCountdownState] = useState(false),
-		[isGameOver, setGameOverState] = useState(false);
+		[isGameOver, setGameOverState] = useState(false),
+		[isMuted, setMutedState] = useState(false);
 
 	// Determine what to render
 	const output = showTitleScreen ? <TitleScreen /> : isGameOver ? <GameOver /> : <Grid />;
@@ -34,9 +35,11 @@ function Game() {
 					disableTitleScreen,
 					isCountdownActive,
 					isGameOver,
+					isMuted,
 					playerScore,
 					setCountdownState,
 					setGameOverState,
+					setMutedState,
 					timeRemaining,
 					updateScore
 				}

@@ -2,7 +2,7 @@ import { h } from "preact";
 import { useContext, useState } from "preact/hooks";
 import styled, { keyframes } from "styled-components";
 import { GameContext } from ".";
-import { audioFilePanning, setRandomNumberByRange, useInterval } from "./_utils";
+import { setRandomNumberByRange, useInterval } from "./_utils";
 
 interface IProps {
 	id: string;
@@ -13,7 +13,8 @@ const Mole = (props: IProps) => {
 		[delay, setDelay] = useState(setRandomNumberByRange(1500, 3000)),
 		[isRunning, setIsRunning] = useState(true),
 		[context] = useContext(GameContext),
-		{ timeRemaining, playerScore, updateScore, setCountdownState } = context;
+		{ timeRemaining, playerScore, updateScore, setCountdownState, isMuted } = context,
+		{ id } = props;
 
 	useInterval(
 		() => {
@@ -27,6 +28,15 @@ const Mole = (props: IProps) => {
 	if (timeRemaining === 0) {
 		setIsRunning(false);
 		setActiveState(false);
+
+		// Play game over sound (just the once, not once per mole)
+		if (id === "mole-1" && !isRunning && !isMuted) {
+			setTimeout(() => {
+				const gameoverAudio = document.getElementById(`gameover-sfx${setRandomNumberByRange(1, 6)}`) as HTMLAudioElement;
+				gameoverAudio.currentTime = 0;
+				gameoverAudio.play();
+			}, 300);
+		}
 	}
 
 	// Player has successfully whacks a mole
@@ -37,8 +47,11 @@ const Mole = (props: IProps) => {
 			showStars(e);
 
 			// Audio feedback to the user they hit a mole
-			const hitAudio = document.getElementById(`hit-sfx${setRandomNumberByRange(1, 2)}`) as HTMLAudioElement;
-			audioFilePanning(hitAudio, props.id);
+			if (!isMuted) {
+				const hitAudio = document.getElementById(`hit-sfx${setRandomNumberByRange(1, 16)}`) as HTMLAudioElement;
+				hitAudio.currentTime = 0;
+				hitAudio.play();
+			}
 
 			// Increase player's score
 			updateScore(playerScore + 1);
@@ -56,7 +69,7 @@ const Mole = (props: IProps) => {
 
 	// Show stars when a mole is hit
 	function showStars(e: MouseEvent) {
-		const starsElement = document.getElementById(props.id);
+		const starsElement = document.getElementById(id);
 
 		// Position stars where user hit the mole
 		starsElement.setAttribute("style", `left: calc(${e.clientX}px - 4rem); top: calc(${e.clientY}px - 2rem); z-index: ${playerScore + 1}`);
@@ -71,8 +84,8 @@ const Mole = (props: IProps) => {
 	return (
 		<MoleLabel>
 			<MoleCheckbox type="checkbox" checked={!isActive} disabled={!isActive} />
-			<MoleSprite onMouseDown={e => moleHit(e as MouseEvent)} onTouchStart={e => moleHit(e as MouseEvent)} />
-			<SeeingStars id={props.id} />
+			<MoleSprite onMouseDown={e => moleHit((e as unknown) as MouseEvent)} onTouchStart={e => moleHit((e as unknown) as MouseEvent)} />
+			<SeeingStars id={id} />
 		</MoleLabel>
 	);
 };

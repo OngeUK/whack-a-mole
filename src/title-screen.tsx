@@ -4,10 +4,17 @@ import { GameContext } from ".";
 
 const TitleScreen = () => {
 	const [context] = useContext(GameContext),
-		{ disableTitleScreen } = context;
+		{ disableTitleScreen, isMuted } = context;
 
 	function play() {
 		disableTitleScreen(false);
+
+		// Play intro sound
+		if (!isMuted) {
+			const introAudio = document.getElementById("intro") as HTMLAudioElement;
+			introAudio.currentTime = 0;
+			introAudio.play();
+		}
 	}
 
 	return (
