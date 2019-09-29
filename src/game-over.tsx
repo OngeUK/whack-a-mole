@@ -21,8 +21,10 @@ const GameOver = () => {
 					// Play replay audio
 					if (!isMuted) {
 						const replayAudio = document.getElementById(`replay${setRandomNumberByRange(1, 5)}`) as HTMLAudioElement;
-						replayAudio.currentTime = 0;
-						replayAudio.play();
+						if (replayAudio) {
+							replayAudio.currentTime = 0;
+							replayAudio.play();
+						}
 					}
 				}}
 			>

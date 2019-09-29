@@ -12,8 +12,10 @@ const TitleScreen = () => {
 		// Play intro sound
 		if (!isMuted) {
 			const introAudio = document.getElementById("intro") as HTMLAudioElement;
-			introAudio.currentTime = 0;
-			introAudio.play();
+			if (introAudio) {
+				introAudio.currentTime = 0;
+				introAudio.play();
+			}
 		}
 	}
 

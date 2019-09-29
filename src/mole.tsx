@@ -33,8 +33,10 @@ const Mole = (props: IProps) => {
 		if (id === "mole-1" && !isRunning && !isMuted) {
 			setTimeout(() => {
 				const gameoverAudio = document.getElementById(`gameover-sfx${setRandomNumberByRange(1, 6)}`) as HTMLAudioElement;
-				gameoverAudio.currentTime = 0;
-				gameoverAudio.play();
+				if (gameoverAudio) {
+					gameoverAudio.currentTime = 0;
+					gameoverAudio.play();
+				}
 			}, 300);
 		}
 	}
@@ -71,14 +73,16 @@ const Mole = (props: IProps) => {
 	function showStars(e: MouseEvent) {
 		const starsElement = document.getElementById(id);
 
-		// Position stars where user hit the mole
-		starsElement.setAttribute("style", `left: calc(${e.clientX}px - 4rem); top: calc(${e.clientY}px - 2rem); z-index: ${playerScore + 1}`);
-		starsElement.setAttribute("data-active", "");
+		if (starsElement) {
+			// Position stars where user hit the mole
+			starsElement.setAttribute("style", `left: calc(${e.clientX}px - 4rem); top: calc(${e.clientY}px - 2rem); z-index: ${playerScore + 1}`);
+			starsElement.setAttribute("data-active", "");
 
-		// Reset ability to animate once animation is complete
-		starsElement.addEventListener("animationend", () => {
-			starsElement.removeAttribute("data-active");
-		});
+			// Reset ability to animate once animation is complete
+			starsElement.addEventListener("animationend", () => {
+				starsElement.removeAttribute("data-active");
+			});
+		}
 	}
 
 	return (

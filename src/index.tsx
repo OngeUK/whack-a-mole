@@ -71,8 +71,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 // Remove loader from DOM
-document.getElementById("loader").remove();
+let loader = document.getElementById("loader");
+if (loader) {
+	loader.remove();
+	loader = null;
+}
 
 // Render our app
 const rootElement = document.getElementById("app");
-render(<Game />, rootElement);
+render(<Game />, rootElement as Element);
