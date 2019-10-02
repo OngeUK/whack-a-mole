@@ -1038,7 +1038,7 @@ babel-code-frame@^6.26.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-core@^6.26.0, babel-core@^6.26.3:
+babel-core@6.26.3, babel-core@^6.26.0:
   version "6.26.3"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.3.tgz#b2e2f09e342d0f0c88e2f02e067794125e75c207"
   dependencies:
@@ -1480,7 +1480,7 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-preset-env@^1.7.0:
+babel-preset-env@1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.7.0.tgz#dea79fa4ebeb883cd35dab07e260c1c9c04df77a"
   dependencies:
@@ -1521,7 +1521,7 @@ babel-preset-flow@^6.23.0:
   dependencies:
     babel-plugin-transform-flow-strip-types "^6.22.0"
 
-babel-preset-react@^6.24.1:
+babel-preset-react@6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-preset-react/-/babel-preset-react-6.24.1.tgz#ba69dfaea45fc3ec639b6a4ecea6e17702c91380"
   dependencies:
@@ -5260,7 +5260,7 @@ parcel-bundler@1.12.3, parcel-bundler@^1.10.3:
     v8-compile-cache "^2.0.0"
     ws "^5.1.1"
 
-parcel-plugin-bundle-visualiser@^1.2.0:
+parcel-plugin-bundle-visualiser@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/parcel-plugin-bundle-visualiser/-/parcel-plugin-bundle-visualiser-1.2.0.tgz#b24cde64233c8e8ce2561ec5d864a7543d8e719d"
   dependencies:
@@ -5839,9 +5839,9 @@ posthtml@^0.11.2, posthtml@^0.11.4:
     posthtml-parser "^0.4.1"
     posthtml-render "^1.1.5"
 
-preact@10.0.0-rc.3:
-  version "10.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.0.0-rc.3.tgz#258d1bbf11744e0460b8681422cd6a0c18200df7"
+preact@10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.0.0.tgz#c528f04ac6c792a04d8c98a5144d8b13e0cf2aed"
 
 prelude-ls@~1.1.2:
   version "1.1.2"

@@ -41,7 +41,7 @@ const Mole = (props: IProps) => {
 		}
 	}
 
-	// Player has successfully whacks a mole
+	// Player has successfully whacked a mole
 	function moleHit(e: MouseEvent) {
 		// Prevent click/tap spamming
 		if (isActive) {
@@ -89,7 +89,11 @@ const Mole = (props: IProps) => {
 		<MoleLabel>
 			<MoleCheckbox type="checkbox" checked={!isActive} disabled={!isActive} />
 			<MoleSprite onMouseDown={e => moleHit((e as unknown) as MouseEvent)} onTouchStart={e => moleHit((e as unknown) as MouseEvent)} />
-			<SeeingStars id={id} />
+			<SeeingStars id={id}>
+				<Star type="small_l" />
+				<Star type="large" />
+				<Star type="small_r" />
+			</SeeingStars>
 		</MoleLabel>
 	);
 };
@@ -136,7 +140,9 @@ const hit = keyframes`
 `;
 
 const SeeingStars = styled.div`
+	align-items: center;
 	background: green;
+	display: flex;
 	height: 4rem;
 	opacity: 0;
 	pointer-events: none;
@@ -147,5 +153,25 @@ const SeeingStars = styled.div`
 		animation: ${hit} 0.3s linear;
 	}
 `;
+
+const rotate = keyframes`
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(720deg);
+	}
+`;
+
+const Star = styled.span<IStar>`
+	animation: ${rotate} 0.3s linear;
+	height: ${(props: IStar) => (props.type === "large" ? "4rem" : "3rem")};
+	width: ${(props: IStar) => (props.type === "large" ? "3rem" : "2rem")};
+`;
+
+interface IStar {
+	type: string;
+}
 
 export default Mole;
