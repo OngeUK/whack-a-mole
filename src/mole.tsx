@@ -32,7 +32,7 @@ const Mole = (props: IProps) => {
 		// Play game over sound (just the once, not once per mole)
 		if (id === "mole-1" && !isRunning && !isMuted) {
 			setTimeout(() => {
-				const gameoverAudio = document.getElementById(`gameover-sfx${setRandomNumberByRange(1, 6)}`) as HTMLAudioElement;
+				const gameoverAudio = document.getElementById(`gameover-sfx${setRandomNumberByRange(1, 5)}`) as HTMLAudioElement;
 				if (gameoverAudio) {
 					gameoverAudio.currentTime = 0;
 					gameoverAudio.play();
@@ -42,7 +42,7 @@ const Mole = (props: IProps) => {
 	}
 
 	// Player has successfully whacked a mole
-	function moleHit(e: MouseEvent) {
+	function moleHit(e: MouseEvent | TouchEvent) {
 		// Prevent click/tap spamming
 		if (isActive) {
 			// Visual feedback to user they hit a mole
@@ -70,12 +70,14 @@ const Mole = (props: IProps) => {
 	}
 
 	// Show stars when a mole is hit
-	function showStars(e: MouseEvent) {
-		const starsElement = document.getElementById(id);
+	function showStars(e: MouseEvent | TouchEvent) {
+		const starsElement = document.getElementById(id),
+			posX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX, // clientX is handled differently on MouseEvent & TouchEvent
+			posY = e instanceof MouseEvent ? e.clientY : e.touches[0].clientY; // clientY is handled differently on MouseEvent & TouchEvent
 
 		if (starsElement) {
 			// Position stars where user hit the mole
-			starsElement.setAttribute("style", `left: calc(${e.clientX}px - 4rem); top: calc(${e.clientY}px - 2rem); z-index: ${playerScore + 1}`);
+			starsElement.setAttribute("style", `left: calc(${posX}px - 4rem); top: calc(${posY}px - 2rem); z-index: ${playerScore + 1}`);
 			starsElement.setAttribute("data-active", "");
 
 			// Reset ability to animate once animation is complete
@@ -88,11 +90,11 @@ const Mole = (props: IProps) => {
 	return (
 		<MoleLabel>
 			<MoleCheckbox type="checkbox" checked={!isActive} disabled={!isActive} />
-			<MoleSprite onMouseDown={e => moleHit((e as unknown) as MouseEvent)} onTouchStart={e => moleHit((e as unknown) as MouseEvent)} />
-			<SeeingStars id={id}>
-				<Star type="small_l" />
-				<Star type="large" />
-				<Star type="small_r" />
+			<MoleSprite onMouseDown={e => moleHit((e as unknown) as MouseEvent)} onTouchStart={e => moleHit((e as unknown) as TouchEvent)} />
+			<SeeingStars id={id} angle={setRandomNumberByRange(-20, 20)}>
+				<Star type="left" />
+				<Star type="middle" />
+				<Star type="right" />
 			</SeeingStars>
 		</MoleLabel>
 	);
@@ -124,7 +126,6 @@ const MoleSprite = styled.div`
 	}
 
 	input:checked + & {
-		background: blue;
 		transform: translate3d(0, 100%, 0);
 	}
 `;
@@ -139,39 +140,90 @@ const hit = keyframes`
 	}
 `;
 
-const SeeingStars = styled.div`
+const SeeingStars = styled.div<ISeeingStars>`
 	align-items: center;
-	background: green;
 	display: flex;
-	height: 4rem;
+	height: 3rem;
+	justify-content: center;
 	opacity: 0;
 	pointer-events: none;
 	position: absolute;
-	width: 8rem;
+	width: 9rem;
 
 	&[data-active] {
 		animation: ${hit} 0.3s linear;
+		transform: rotate(${(props: ISeeingStars) => props.angle}deg);
 	}
 `;
 
-const rotate = keyframes`
+const animateLeftStar = keyframes`
 	from {
-		transform: rotate(0deg);
+		opacity: 1;
+		transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
 	}
 
 	to {
-		transform: rotate(720deg);
+		opacity: 0;
+		transform: translate3d(-150%, 0, 0) rotate(270deg) scale(0);
+	}
+`;
+
+const animateMiddleStar = keyframes`
+	from {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+
+	to {
+		opacity: 0;
+		transform: rotate(270deg) scale(0);
+	}
+`;
+
+const animateRightStar = keyframes`
+	from {
+		opacity: 1;
+		transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+	}
+
+	to {
+		opacity: 0;
+		transform: translate3d(150%, 0, 0) rotate(270deg) scale(0);
 	}
 `;
 
 const Star = styled.span<IStar>`
-	animation: ${rotate} 0.3s linear;
-	height: ${(props: IStar) => (props.type === "large" ? "4rem" : "3rem")};
-	width: ${(props: IStar) => (props.type === "large" ? "3rem" : "2rem")};
+	background: yellow;
+	border: 2px solid #000;
+	display: block;
+	height: ${(props: IStar) => (props.type === "middle" ? "2.5rem" : "1.25rem")};
+	margin: 0 0.25rem;
+	width: ${(props: IStar) => (props.type === "middle" ? "2.5rem" : "1.25rem")};
+
+	div[data-active] & {
+		animation: ${(props: IStar) => {
+				if (props.type === "left") {
+					return animateLeftStar;
+				}
+
+				if (props.type === "middle") {
+					return animateMiddleStar;
+				}
+
+				if (props.type === "right") {
+					return animateRightStar;
+				}
+			}}
+			0.3s linear;
+	}
 `;
 
 interface IStar {
 	type: string;
+}
+
+interface ISeeingStars {
+	angle: number;
 }
 
 export default Mole;

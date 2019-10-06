@@ -5,7 +5,8 @@ import { GameContext } from ".";
 
 const Soundboard = () => {
 	const [context] = useContext(GameContext),
-		{ setMutedState } = context;
+		{ setMutedState, isMuted } = context,
+		checkedState = isMuted ? { checked: true } : null;
 
 	return (
 		<Fragment>
@@ -16,6 +17,7 @@ const Soundboard = () => {
 					id="mute"
 					value="Mute"
 					onChange={(e: MouseEvent) => ((e.target as HTMLInputElement).checked ? setMutedState(true) : setMutedState(false))}
+					{...checkedState}
 				/>
 			</MuteLabel>
 			<audio id="intro" preload="true" src={require("./../public/audio/intro.mp3")} />
@@ -35,12 +37,11 @@ const Soundboard = () => {
 			<audio id="hit-sfx14" preload="true" src={require("./../public/audio/doh.mp3")} />
 			<audio id="hit-sfx15" preload="true" src={require("./../public/audio/meanie.mp3")} />
 			<audio id="hit-sfx16" preload="true" src={require("./../public/audio/ouchie.mp3")} />
-			<audio id="gameover-sfx1" preload="true" src={require("./../public/audio/alldone.mp3")} />
-			<audio id="gameover-sfx2" preload="true" src={require("./../public/audio/enough.mp3")} />
-			<audio id="gameover-sfx3" preload="true" src={require("./../public/audio/gameoverman.mp3")} />
-			<audio id="gameover-sfx4" preload="true" src={require("./../public/audio/retreat.mp3")} />
-			<audio id="gameover-sfx5" preload="true" src={require("./../public/audio/runaway.mp3")} />
-			<audio id="gameover-sfx6" preload="true" src={require("./../public/audio/surrender.mp3")} />
+			<audio id="gameover-sfx1" preload="true" src={require("./../public/audio/enough.mp3")} />
+			<audio id="gameover-sfx2" preload="true" src={require("./../public/audio/gameoverman.mp3")} />
+			<audio id="gameover-sfx3" preload="true" src={require("./../public/audio/retreat.mp3")} />
+			<audio id="gameover-sfx4" preload="true" src={require("./../public/audio/runaway.mp3")} />
+			<audio id="gameover-sfx5" preload="true" src={require("./../public/audio/surrender.mp3")} />
 			<audio id="replay1" preload="true" src={require("./../public/audio/bringiton.mp3")} />
 			<audio id="replay2" preload="true" src={require("./../public/audio/gameon.mp3")} />
 			<audio id="replay3" preload="true" src={require("./../public/audio/letsdothis.mp3")} />
