@@ -42,6 +42,12 @@ const Soundboard = () => {
 			<audio id="gameover-sfx3" preload="true" src={require("./../public/audio/retreat.mp3")} />
 			<audio id="gameover-sfx4" preload="true" src={require("./../public/audio/runaway.mp3")} />
 			<audio id="gameover-sfx5" preload="true" src={require("./../public/audio/surrender.mp3")} />
+			<audio id="highscore-sfx1" preload="true" src={require("./../public/audio/congrats.mp3")} />
+			<audio id="highscore-sfx2" preload="true" src={require("./../public/audio/highscore.mp3")} />
+			<audio id="highscore-sfx3" preload="true" src={require("./../public/audio/impressive.mp3")} />
+			<audio id="highscore-sfx4" preload="true" src={require("./../public/audio/welldone.mp3")} />
+			<audio id="highscore-sfx5" preload="true" src={require("./../public/audio/woah.mp3")} />
+			<audio id="highscore-sfx6" preload="true" src={require("./../public/audio/youthebest.mp3")} />
 			<audio id="replay1" preload="true" src={require("./../public/audio/bringiton.mp3")} />
 			<audio id="replay2" preload="true" src={require("./../public/audio/gameon.mp3")} />
 			<audio id="replay3" preload="true" src={require("./../public/audio/letsdothis.mp3")} />

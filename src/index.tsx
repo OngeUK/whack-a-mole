@@ -13,16 +13,19 @@ import TitleScreen from "./title-screen";
 import { defaultContext, IContext } from "./_utils";
 
 export const GameContext = createContext<[IContext]>([defaultContext]);
-export const gameLength = 10;
+export const gameLength = 3;
 
 function Game() {
 	// Set our states
 	const [showTitleScreen, disableTitleScreen] = useState(true),
 		[timeRemaining, countdown] = useState(gameLength),
 		[playerScore, updateScore] = useState(0),
+		[playerHighScore, updateHighScore] = useState(0),
 		[isCountdownActive, setCountdownState] = useState(false),
+		[isFirstPlay, setFirstPlayState] = useState(true),
 		[isGameOver, setGameOverState] = useState(false),
-		[isMuted, setMutedState] = useState(true);
+		[isMuted, setMutedState] = useState(true),
+		[isHighScore, setHighScoreState] = useState(false);
 
 	// Determine what to render
 	const output = showTitleScreen ? <TitleScreen /> : isGameOver ? <GameOver /> : <MoleGrid />;
@@ -35,12 +38,18 @@ function Game() {
 					disableTitleScreen,
 					isCountdownActive,
 					isGameOver,
+					isFirstPlay,
 					isMuted,
+					isHighScore,
+					playerHighScore,
 					playerScore,
 					setCountdownState,
+					setFirstPlayState,
 					setGameOverState,
 					setMutedState,
+					setHighScoreState,
 					timeRemaining,
+					updateHighScore,
 					updateScore
 				}
 			]}

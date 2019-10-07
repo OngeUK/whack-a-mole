@@ -37,12 +37,18 @@ export interface IContext {
 	disableTitleScreen: Function;
 	isCountdownActive: boolean;
 	isGameOver: boolean;
+	isFirstPlay: boolean;
 	isMuted: boolean;
+	isHighScore: boolean;
+	playerHighScore: number;
 	playerScore: number;
 	setCountdownState: Function;
+	setFirstPlayState: Function;
 	setGameOverState: Function;
 	setMutedState: Function;
+	setHighScoreState: Function;
 	timeRemaining: number;
+	updateHighScore: Function;
 	updateScore: Function;
 }
 
@@ -54,10 +60,16 @@ export const defaultContext: IContext = {
 		return;
 	},
 	isCountdownActive: false,
+	isFirstPlay: true,
 	isGameOver: false,
 	isMuted: false,
+	isHighScore: false,
+	playerHighScore: 0,
 	playerScore: 0,
 	setCountdownState: () => {
+		return;
+	},
+	setFirstPlayState: () => {
 		return;
 	},
 	setGameOverState: () => {
@@ -66,7 +78,13 @@ export const defaultContext: IContext = {
 	setMutedState: () => {
 		return;
 	},
+	setHighScoreState: () => {
+		return;
+	},
 	timeRemaining: gameLength,
+	updateHighScore: () => {
+		return;
+	},
 	updateScore: () => {
 		return;
 	}
