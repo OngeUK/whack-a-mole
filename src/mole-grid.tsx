@@ -1,18 +1,14 @@
 import { Fragment, h } from "preact";
-import { useContext } from "preact/hooks";
 import styled from "styled-components";
 import Clock from "./clock";
-import { GameContext } from "./index";
 import Mole from "./mole";
+import { Scoreboard } from "./scoreboard";
 
-function Grid() {
-	const [context] = useContext(GameContext),
-		{ playerScore } = context;
-
+function MoleGrid() {
 	return (
 		<Fragment>
 			<Clock />
-			<Scoreboard>{playerScore}</Scoreboard>
+			<Scoreboard />
 			<GridArea>
 				<Mole id="mole-1" />
 				<Mole id="mole-2" />
@@ -26,12 +22,14 @@ function Grid() {
 
 const GridArea = styled.main`
 	display: grid;
+	grid-column: 1 / span 2;
 	grid-gap: 5vh;
+	grid-row: 2;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
-	height: 90vh;
+	height: 100%;
 	max-width: 1440px;
-	width: 90vw;
+	width: 100%;
 
 	*:nth-child(3) {
 		grid-column: 1 / span 2;
@@ -39,12 +37,4 @@ const GridArea = styled.main`
 	}
 `;
 
-const Scoreboard = styled.div`
-	font-weight: bold;
-	padding: 1rem;
-	position: absolute;
-	right: 0;
-	top: 0;
-`;
-
-export default Grid;
+export default MoleGrid;

@@ -52,9 +52,10 @@ const Soundboard = () => {
 };
 
 const MuteLabel = styled.label`
-	bottom: 1.5rem;
-	position: absolute;
-	right: 1.5rem;
+	grid-column: 2;
+	grid-row: 3;
+	padding: 1rem;
+	text-align: right;
 `;
 
 export default Soundboard;

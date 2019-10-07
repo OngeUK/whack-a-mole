@@ -37,7 +37,6 @@ const Clockface = styled.div`
 	font-weight: bold;
 	left: 0;
 	padding: 1rem;
-	position: absolute;
 	top: 0;
 `;
 

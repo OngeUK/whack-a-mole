@@ -7,7 +7,7 @@ import { createContext, h, render } from "preact";
 import { useState } from "preact/hooks";
 import { createGlobalStyle } from "styled-components";
 import GameOver from "./game-over";
-import Grid from "./grid";
+import MoleGrid from "./mole-grid";
 import Soundboard from "./soundboard";
 import TitleScreen from "./title-screen";
 import { defaultContext, IContext } from "./_utils";
@@ -25,7 +25,7 @@ function Game() {
 		[isMuted, setMutedState] = useState(true);
 
 	// Determine what to render
-	const output = showTitleScreen ? <TitleScreen /> : isGameOver ? <GameOver /> : <Grid />;
+	const output = showTitleScreen ? <TitleScreen /> : isGameOver ? <GameOver /> : <MoleGrid />;
 
 	return (
 		<GameContext.Provider
@@ -46,8 +46,8 @@ function Game() {
 			]}
 		>
 			<GlobalStyle />
-			<Soundboard />
 			{output}
+			<Soundboard />
 		</GameContext.Provider>
 	);
 }
@@ -64,6 +64,9 @@ const GlobalStyle = createGlobalStyle`
 		align-content: center;
 		display: grid;
 		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto 1fr auto;
+		height: 100vh;
 		justify-content: center;
 		margin: 0;
 		min-width: 320px;

@@ -1,5 +1,6 @@
-import { Fragment, h } from "preact";
+import { h } from "preact";
 import { useContext } from "preact/hooks";
+import styled from "styled-components";
 import { GameContext } from ".";
 
 const TitleScreen = () => {
@@ -20,19 +21,22 @@ const TitleScreen = () => {
 	}
 
 	return (
-		<Fragment>
+		<Title>
 			<h1>Whack-a-mole!</h1>
 			<br />
 			<button type="button" onClick={play}>
 				Let's go!
 			</button>
-		</Fragment>
+		</Title>
 	);
 };
 
-// const MoleLabel = styled.label`
-// 	overflow: hidden;
-// 	place-self: end center;
-// `;
+const Title = styled.main`
+	align-self: center;
+	grid-column: 1 / span 2;
+	grid-row: 2;
+	justify-self: center;
+	text-align: center;
+`;
 
 export default TitleScreen;

@@ -1,5 +1,6 @@
-import { Fragment, h } from "preact";
+import { h } from "preact";
 import { useContext } from "preact/hooks";
+import styled from "styled-components";
 import { GameContext, gameLength } from ".";
 import { setRandomNumberByRange } from "./_utils";
 
@@ -8,7 +9,7 @@ const GameOver = () => {
 		{ playerScore, updateScore, setGameOverState, countdown, isMuted } = context;
 
 	return (
-		<Fragment>
+		<GameOverMan>
 			All done! You scored {playerScore}
 			<br />
 			<button
@@ -30,8 +31,16 @@ const GameOver = () => {
 			>
 				Again!
 			</button>
-		</Fragment>
+		</GameOverMan>
 	);
 };
+
+const GameOverMan = styled.div`
+	align-self: center;
+	grid-column: 1 / span 2;
+	grid-row: 2;
+	justify-self: center;
+	text-align: center;
+`;
 
 export default GameOver;
