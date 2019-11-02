@@ -1,12 +1,8 @@
 import { Fragment, h } from "preact";
-import { useState } from "preact/hooks";
-import { IHitState, setRandomNumberByRange } from "../_utils";
+import { IHitState } from "../_utils";
 
 const Mouth = (props: IHitState) => {
-	// TODO - change state each time a new mole emerges
-	const { isHit } = props,
-		[mouth] = useState(setRandomNumberByRange(1, 2)),
-		[hitMouth] = useState(setRandomNumberByRange(1, 4));
+	const { isHit, mouth, hitMouth } = props;
 
 	return (
 		<Fragment>

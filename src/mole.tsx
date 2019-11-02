@@ -6,7 +6,8 @@ import MoleSprite from "./mole-sprite";
 import { setRandomNumberByRange, useInterval } from "./_utils";
 
 const Mole = (props: IProps) => {
-	const [isActive, setActiveState] = useState(true), // default should be false
+	const [isActive, setActiveState] = useState(false),
+		[isHit, setHitState] = useState(false),
 		[delay, setDelay] = useState(setRandomNumberByRange(1500, 3000)),
 		[isRunning, setIsRunning] = useState(true),
 		[context] = useContext(GameContext),
@@ -15,8 +16,9 @@ const Mole = (props: IProps) => {
 
 	useInterval(
 		() => {
-			// setActiveState(!isActive);
+			setActiveState(!isActive);
 			setCountdownState(true);
+			!isActive ? setHitState(false) : null;
 		},
 		isRunning ? delay : null
 	);
@@ -43,6 +45,7 @@ const Mole = (props: IProps) => {
 		// Prevent click/tap spamming
 		if (isActive) {
 			// Visual feedback to user they hit a mole
+			setHitState(true);
 			showStars(e);
 
 			// Audio feedback to the user they hit a mole
@@ -88,7 +91,7 @@ const Mole = (props: IProps) => {
 		<MoleLabel>
 			<MoleCheckbox type="checkbox" checked={!isActive} disabled={!isActive} />
 			<MoleBody onMouseDown={e => moleHit((e as unknown) as MouseEvent)} onTouchStart={e => moleHit((e as unknown) as TouchEvent)}>
-				<MoleSprite isHit={!isActive} />
+				<MoleSprite isHit={isHit} />
 			</MoleBody>
 			<SeeingStars id={id} angle={setRandomNumberByRange(-20, 20)}>
 				<Star type="left">
@@ -134,6 +137,7 @@ const Mole = (props: IProps) => {
 
 const MoleLabel = styled.label`
 	height: 100%;
+	overflow: hidden;
 	place-self: end center;
 `;
 
@@ -169,7 +173,7 @@ const MoleBody = styled.div`
 	}
 
 	input:checked + & {
-		/* transform: translate3d(0, 100%, 0); */
+		transform: translate3d(0, 100%, 0);
 	}
 `;
 

@@ -1,5 +1,6 @@
 import { h } from "preact";
 import { useState } from "preact/hooks";
+import { useEffect } from "react";
 import Bow from "./svg/bow";
 import Claws from "./svg/claws";
 import Eyes from "./svg/eyes";
@@ -11,10 +12,29 @@ import { IHitState, setRandomNumberByRange } from "./_utils";
 const MoleSprite = (props: IHitState) => {
 	const { isHit } = props,
 		colourList = ["#ff0505", "#f33aff", "#6b9cff", "#22e04f", "#ffa800"],
-		[genderNum] = useState(setRandomNumberByRange(1, 3)),
-		[colourIndex] = useState(setRandomNumberByRange(0, 4)),
-		isFemale = genderNum === 3, // 1 in 3 mole to be female
+		[genderNum, setGenderNum] = useState(setRandomNumberByRange(1, 3)),
+		[colourIndex, setColourIndex] = useState(setRandomNumberByRange(0, 4)),
+		[glassesNum, setGlassesNum] = useState(setRandomNumberByRange(1, 5)),
+		[monocleNum, setMonocleNum] = useState(setRandomNumberByRange(1, 10)),
+		[tashNum, setTashNum] = useState(setRandomNumberByRange(1, 8)),
+		[mouth, setMouth] = useState(setRandomNumberByRange(1, 2)),
+		[hitMouth, setHitMouth] = useState(setRandomNumberByRange(1, 4));
+
+	let isFemale = genderNum === 3, // 1 in 3 mole to be female
 		colour = isFemale ? colourList[colourIndex] : "#fdefa5";
+
+	useEffect(() => {
+		// Randomise mole appearance just before they re-emerge
+		if (!isHit) {
+			setGenderNum(setRandomNumberByRange(1, 3));
+			setColourIndex(setRandomNumberByRange(0, 4));
+			setGlassesNum(setRandomNumberByRange(1, 5));
+			setMonocleNum(setRandomNumberByRange(1, 10));
+			setTashNum(setRandomNumberByRange(1, 8));
+			setMouth(setRandomNumberByRange(1, 2));
+			setHitMouth(setRandomNumberByRange(1, 4));
+		}
+	}, [isHit]);
 
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute" }} viewBox="0 0 195 335">
@@ -36,9 +56,9 @@ const MoleSprite = (props: IHitState) => {
 					d="M135.199 95.535c-1.346-2.736-2.059-4.136-3.6-6.24-1.481-2.021-2.287-2.872-3.842-4.08-1.68-1.307-3.119-2.593-4.8-3.84-1.095-.813-2.168-1.635-3.358-2.4-1.164-.747-2.275-1.823-3.359-2.4-.897-.476-2.362-.619-3.602-1.2-2.416-1.131-5.666-3.165-8.641-3.36-1.254-.082-2.051.476-3.12.48-.481.002-1.035-.44-1.683-.48-.814-.05-1.806.184-2.397.24-8.636.816-18.882 5.351-25.2 9.6-1.758 1.182-3.374 2.629-4.8 3.84-4.045 3.434-6.003 8.775-8.4 14.4-2.162 5.075-3.182 10.313-2.64 16.081.185 1.97.918 4.115 1.2 6.239.313 2.358.247 4.779.72 6.96.634 2.927 2.109 5.389 3.36 7.92 1.812 1.811 3.232 3.849 4.802 5.521.545.58 1.073 1.407 1.68 1.92 5.079 4.289 14.121 6.066 21.6 7.2 2.672.404 5.53 1.024 7.92.96 2.911-.079 6.288-1.126 9.603-1.681 6.616-1.107 11.986-4.064 16.801-6.96 2.423-1.46 5.461-2.702 7.438-4.56.842-.793 1.432-2.093 2.396-3.12 1.734-1.84 4.582-3.885 5.521-6 .592-1.332.65-2.904.961-4.561.291-1.558.816-3.071.959-4.079.676-4.816-.434-10.568-1.681-15.84-.947-4.021-2.394-7.629-3.838-10.56zm.479 26.399c-.959 4.488-1.853 5.916-4.8 8.88-.644.649-1.521 1.196-2.159 1.92-.697.784-1.015 1.749-1.683 2.399-1.509 1.474-3.791 2.023-5.038 3.84-1.749.068-3.203 1.238-4.563 1.921-3.289 1.651-5.955 2.782-9.358 4.079-2.505.956-4.651 1.059-8.399 1.681-2.478.411-4.63 1.047-7.44.72-3.269-.381-6.086-1.043-9.12-1.68-6.901-1.448-11.875-3.051-15.839-7.44-.737-.816-1.43-1.951-2.16-2.88-1.726-2.196-2.573-3.146-3.36-6.72-.395-1.791-.392-4.139-.72-6.479-.809-5.774-1.944-12.196-.24-18 .674-2.296 2.268-4.551 3.36-6.96 1.084-2.392 1.969-4.947 3.36-6.72.666-.849 1.824-1.513 2.88-2.4.894-.752 1.726-1.793 2.64-2.4.87-.579 2.079-.868 3.12-1.44.972-.533 1.762-1.472 2.64-1.92 1.283-.654 2.991-1.014 4.56-1.68 3.706-1.571 9.632-3.838 13.92-4.32.027-.003.063-.007.107-.009l8.277 1.319c1.437.374 3.038 1.599 5.053 2.529 1.374.635 2.88.707 3.841 1.2.576.296 1.15.965 1.92 1.44 1.364.843 2.455 1.948 3.84 2.88.701.473 1.588.517 2.16.96.772.598 1.385 1.699 2.16 2.4.908.819 2.068 1.325 2.639 1.92 1.303 1.352 2.611 3.561 3.604 5.52 3.55 7.023 6.783 16.152 4.798 25.44z"
 				/>
 			</g>
-			<Glasses isHit={isHit} isFemale={isFemale} />
-			<FacialHair isFemale={isFemale} />
-			<Mouth isHit={isHit} isFemale={isFemale} />
+			<Glasses isHit={isHit} isFemale={isFemale} glassesNum={glassesNum} monocleNum={monocleNum} />
+			<FacialHair isFemale={isFemale} tashNum={tashNum} />
+			<Mouth isHit={isHit} isFemale={isFemale} mouth={mouth} hitMouth={hitMouth} />
 			<Claws colour={colour} />
 		</svg>
 	);

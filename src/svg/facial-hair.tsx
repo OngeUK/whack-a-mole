@@ -1,11 +1,8 @@
 import { Fragment, h } from "preact";
-import { useState } from "preact/hooks";
-import { IHitState, setRandomNumberByRange } from "../_utils";
+import { IHitState } from "../_utils";
 
 const FacialHair = (props: IHitState) => {
-	// TODO - change state each time a new mole emerges
-	const [tashNum] = useState(setRandomNumberByRange(1, 8)),
-		{ isFemale } = props;
+	const { isFemale, tashNum } = props;
 
 	return (
 		<Fragment>

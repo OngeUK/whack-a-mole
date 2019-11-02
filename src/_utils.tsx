@@ -91,7 +91,11 @@ export const defaultContext: IContext = {
 };
 
 export interface IHitState {
+	glassesNum?: number;
+	hitMouth?: number;
 	isHit?: boolean;
 	isFemale?: boolean;
+	monocleNum?: number;
 	mouth?: number;
+	tashNum?: number;
 }
