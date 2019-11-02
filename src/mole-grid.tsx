@@ -28,6 +28,7 @@ const GridArea = styled.main`
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
 	height: 100%;
+	justify-self: center;
 	max-width: 1440px;
 	width: 100%;
 

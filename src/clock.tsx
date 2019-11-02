@@ -36,7 +36,7 @@ const Clock = () => {
 const Clockface = styled.div`
 	font-weight: bold;
 	left: 0;
-	padding: 1rem;
+	padding: 0.5rem 1rem;
 	top: 0;
 `;
 

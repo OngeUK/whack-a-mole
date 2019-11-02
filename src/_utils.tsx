@@ -89,3 +89,9 @@ export const defaultContext: IContext = {
 		return;
 	}
 };
+
+export interface IHitState {
+	isHit?: boolean;
+	isFemale?: boolean;
+	mouth?: number;
+}

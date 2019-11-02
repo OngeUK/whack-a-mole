@@ -12,6 +12,6 @@ export const Scoreboard = () => {
 
 const Score = styled.div`
 	font-weight: bold;
-	padding: 1rem;
+	padding: 0.5rem 1rem;
 	text-align: right;
 `;
