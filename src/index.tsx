@@ -56,10 +56,15 @@ function Game() {
 }
 
 const GlobalStyle = createGlobalStyle`
+	:root {
+		--grass: #0fac38;
+	}
+
 	html,
 	body {
-		height: 100%;
+		height: 100vh;
 		overflow: hidden;
+		overscroll-behavior: none;
 		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 		width: 100%;
 	}
@@ -74,7 +79,7 @@ const GlobalStyle = createGlobalStyle`
 
 	body {
 		align-content: center;
-		background: #0fac38;
+		background: var(--grass);
 		display: grid;
 		font-family: "font";
 		font-size: 2rem;

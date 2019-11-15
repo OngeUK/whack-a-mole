@@ -3,10 +3,11 @@ import { useContext, useState } from "preact/hooks";
 import styled, { keyframes } from "styled-components";
 import { GameContext } from ".";
 import MoleSprite from "./mole-sprite";
-import { setRandomNumberByRange, useInterval } from "./_utils";
+import Molehill from "./svg/molehill";
+import { setRandomNumberByRange } from "./_utils";
 
 const Mole = (props: IProps) => {
-	const [isActive, setActiveState] = useState(false),
+	const [isActive, setActiveState] = useState(true),
 		[isHit, setHitState] = useState(false),
 		[delay, setDelay] = useState(setRandomNumberByRange(1500, 3000)),
 		[isRunning, setIsRunning] = useState(true),
@@ -14,14 +15,14 @@ const Mole = (props: IProps) => {
 		{ timeRemaining, playerScore, updateScore, setCountdownState, isMuted } = context,
 		{ id } = props;
 
-	useInterval(
-		() => {
-			setActiveState(!isActive);
-			setCountdownState(true);
-			!isActive ? setHitState(false) : null;
-		},
-		isRunning ? delay : null
-	);
+	// useInterval(
+	// 	() => {
+	// 		setActiveState(!isActive);
+	// 		setCountdownState(true);
+	// 		!isActive ? setHitState(false) : null;
+	// 	},
+	// 	isRunning ? delay : null
+	// );
 
 	// Hide all moles for good when time is up
 	if (timeRemaining === 0) {
@@ -138,7 +139,9 @@ const Mole = (props: IProps) => {
 const MoleLabel = styled.label`
 	height: 100%;
 	overflow: hidden;
+	padding: 0 5%;
 	place-self: end center;
+	/* position: relative; */
 `;
 
 const MoleCheckbox = styled.input`
@@ -147,7 +150,6 @@ const MoleCheckbox = styled.input`
 	z-index: -1;
 
 	&::before {
-		background: red;
 		bottom: 0;
 		content: "";
 		display: block;
@@ -269,17 +271,10 @@ const Star = styled.span<IStar>`
 `;
 
 const MolehillWrapper = styled.div`
+	bottom: 0;
+	left: -5%;
 	position: relative;
-`;
-
-// TODO - animate in path/fill
-const Molehill = styled.div`
-	background: #5e3601;
-	bottom: -2px;
-	left: -10%;
-	padding-top: 25%;
-	position: absolute;
-	width: 120%;
+	width: 110%;
 `;
 
 interface IStar {

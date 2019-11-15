@@ -5,8 +5,8 @@
 	"main": "src/index.tsx",
 	"dependencies": {
 		"babel-plugin-styled-components": "1.10.6",
-		"preact": "10.0.4",
-		"styled-components": "4.3.2"
+		"preact": "10.0.5",
+		"styled-components": "4.4.1"
 	},
 	"devDependencies": {
 		"@types/styled-components": "4.1.18",

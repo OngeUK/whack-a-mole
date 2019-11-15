@@ -6,12 +6,6 @@ localStorage
 - High score
 - isMuted state
 
-CSS
-- Prevent pull down to refresh
-
-Misc
-- Disable double-tap/pinch to zoom
-
 
 Deploy
 ======
