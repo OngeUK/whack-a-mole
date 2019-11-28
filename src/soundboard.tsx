@@ -11,7 +11,7 @@ const Soundboard = () => {
 	return (
 		<Fragment>
 			<MuteLabel htmlFor="mute">
-				<span>Mute?</span>
+				<span>Shhhh!</span>
 				<input
 					type="checkbox"
 					id="mute"
@@ -58,6 +58,7 @@ const Soundboard = () => {
 };
 
 const MuteLabel = styled.label`
+	font-size: 1.5rem;
 	grid-column: 2;
 	grid-row: 3;
 	padding: 0.5rem 1rem;

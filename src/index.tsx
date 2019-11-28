@@ -1,8 +1,10 @@
 import { createContext, h, render } from "preact";
 import { useState } from "preact/hooks";
 import { createGlobalStyle } from "styled-components";
+import GameOver from "./game-over";
 import MoleGrid from "./mole-grid";
 import Soundboard from "./soundboard";
+import TitleScreen from "./title-screen";
 import { defaultContext, IContext } from "./_utils";
 
 export const GameContext = createContext<[IContext]>([defaultContext]);
@@ -21,8 +23,7 @@ function Game() {
 		[isHighScore, setHighScoreState] = useState(false);
 
 	// Determine what to render
-	// const output = showTitleScreen ? <TitleScreen /> : isGameOver ? <GameOver /> : <MoleGrid />;
-	const output = <MoleGrid />;
+	const output = showTitleScreen ? <TitleScreen /> : isGameOver ? <GameOver /> : <MoleGrid />;
 
 	return (
 		<GameContext.Provider

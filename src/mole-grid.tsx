@@ -10,11 +10,11 @@ function MoleGrid() {
 			<Clock />
 			<Scoreboard />
 			<GridArea>
-				<Mole id="mole-1" />
-				<Mole id="mole-2" />
-				<Mole id="mole-3" />
-				<Mole id="mole-4" />
-				<Mole id="mole-5" />
+				<Mole id="mole-1" time={0} />
+				<Mole id="mole-2" time={0.2} />
+				<Mole id="mole-3" time={0.4} />
+				<Mole id="mole-4" time={0.6} />
+				<Mole id="mole-5" time={0.8} />
 			</GridArea>
 		</Fragment>
 	);

@@ -6,6 +6,11 @@ localStorage
 - High score
 - isMuted state
 
+og image
+icon
+workbox
+loading screen
+typescript errors
 
 Deploy
 ======
