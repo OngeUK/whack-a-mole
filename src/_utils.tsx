@@ -28,6 +28,19 @@ export function useInterval(callback: any, delay: number | null) {
 	}, [delay]);
 }
 
+// Check if local storage is available
+export function localStorageAvailable(): boolean {
+	const mod: string = "test";
+
+	try {
+		localStorage.setItem(mod, mod);
+		localStorage.removeItem(mod);
+		return true;
+	} catch (e) {
+		return false;
+	}
+}
+
 interface ISavedCallback {
 	current?: Function;
 }

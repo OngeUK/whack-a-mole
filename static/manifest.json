@@ -1,0 +1,17 @@
+{
+	"name": "Whack-a-mole!",
+	"short_name": "Mole",
+	"start_url": "https://mole.onge.uk/",
+	"display": "standalone",
+	"orientation": "portrait",
+	"background_color": "#0fac38",
+	"theme_color": "#0fac38",
+	"icons": [
+		{
+			"src": "https://mole.onge.uk/icon.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "maskable any"
+		}
+	]
+}

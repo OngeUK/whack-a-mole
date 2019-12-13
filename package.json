@@ -5,7 +5,7 @@
 	"main": "src/index.tsx",
 	"dependencies": {
 		"babel-plugin-styled-components": "1.10.6",
-		"preact": "10.0.5",
+		"preact": "10.1.0",
 		"styled-components": "4.4.1"
 	},
 	"devDependencies": {
@@ -14,9 +14,9 @@
 		"babel-preset-env": "1.7.0",
 		"babel-preset-react": "6.24.1",
 		"parcel-bundler": "1.12.3",
+		"parcel-plugin-static-files-copy": "2.2.1",
 		"parcel-plugin-bundle-visualiser": "1.2.0",
 		"parcel-plugin-imagemin": "3.0.0",
-		"parcel-plugin-sw-cache": "0.3.1",
 		"prettier": "1.18.2",
 		"rimraf": "2.6.3",
 		"stylelint": "10.1.0",
@@ -27,7 +27,8 @@
 		"tslint": "5.19.0",
 		"tslint-config-prettier": "1.18.0",
 		"tslint-react": "4.0.0",
-		"typescript": "3.6.2"
+		"typescript": "3.6.2",
+		"workbox-build": "4.3.1"
 	},
 	"scripts": {
 		"start": "parcel ./public/index.html --open",
@@ -42,11 +43,5 @@
 		"not dead",
 		"not ie <= 11",
 		"not op_mini all"
-	],
-	"cache": {
-		"disablePlugin": false,
-		"inDev": false,
-		"strategy": "default",
-		"clearDist": false
-	}
+	]
 }

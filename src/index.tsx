@@ -5,10 +5,11 @@ import GameOver from "./game-over";
 import MoleGrid from "./mole-grid";
 import Soundboard from "./soundboard";
 import TitleScreen from "./title-screen";
-import { defaultContext, IContext } from "./_utils";
+import { defaultContext, IContext, localStorageAvailable } from "./_utils";
 
 export const GameContext = createContext<[IContext]>([defaultContext]);
 export const gameLength = 10;
+const prevMutedPreference = localStorageAvailable() ? (localStorage.getItem("ismute") === "true" ? true : false) : false;
 
 function Game() {
 	// Set our states
@@ -19,7 +20,7 @@ function Game() {
 		[isCountdownActive, setCountdownState] = useState(false),
 		[isFirstPlay, setFirstPlayState] = useState(true),
 		[isGameOver, setGameOverState] = useState(false),
-		[isMuted, setMutedState] = useState(true),
+		[isMuted, setMutedState] = useState(prevMutedPreference),
 		[isHighScore, setHighScoreState] = useState(false);
 
 	// Determine what to render
@@ -57,10 +58,6 @@ function Game() {
 }
 
 const GlobalStyle = createGlobalStyle`
-	:root {
-		--grass: #0fac38;
-	}
-
 	html,
 	body {
 		height: 100vh;
@@ -72,29 +69,27 @@ const GlobalStyle = createGlobalStyle`
 
 	@font-face {
 		font-display: "swap";
-		font-family: "font";
+		font-family: "fonty";
 		font-style: normal;
 		font-weight: normal;
-		src: url(${require("./../public/font.woff2")}) format("woff2");
+		src: url(${require("./../public/fontyMcFontFace.woff2")}) format("woff2");
 	}
 
 	body {
 		align-content: center;
-		background: var(--grass);
 		display: grid;
-		font-family: "font";
+		font-family: "fonty", "Comic Sans MS", "Arial";
 		font-size: 2rem;
 		font-weight: bold;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: auto 1fr auto;
 		height: 100%;
 		justify-content: center;
-		margin: 0;
 		min-width: 320px;
 	}
 
 	button {
-		font-family: "font";
+		font-family: "fonty", "Comic Sans MS", "Arial";
 	}
 `;
 
