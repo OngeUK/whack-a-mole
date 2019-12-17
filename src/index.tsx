@@ -67,18 +67,9 @@ const GlobalStyle = createGlobalStyle`
 		width: 100%;
 	}
 
-	@font-face {
-		font-display: "swap";
-		font-family: "fonty";
-		font-style: normal;
-		font-weight: normal;
-		src: url(${require("./../public/fontyMcFontFace.woff2")}) format("woff2");
-	}
-
 	body {
 		align-content: center;
 		display: grid;
-		font-family: "fonty", "Comic Sans MS", "Arial";
 		font-size: 2rem;
 		font-weight: bold;
 		grid-template-columns: 1fr 1fr;
@@ -86,10 +77,6 @@ const GlobalStyle = createGlobalStyle`
 		height: 100%;
 		justify-content: center;
 		min-width: 320px;
-	}
-
-	button {
-		font-family: "fonty", "Comic Sans MS", "Arial";
 	}
 `;
 

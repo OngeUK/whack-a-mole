@@ -55,6 +55,7 @@ const drawStroke = keyframes`
 	}
 `;
 
+// TODO - fade in is glitchy in Firefox
 const fadeMound = keyframes`
 	0% {
 		opacity: 0;

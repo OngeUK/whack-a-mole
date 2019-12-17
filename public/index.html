@@ -24,9 +24,19 @@
 	<meta name="apple-mobile-web-app-title" content="Whack-a-mole!">
 	<link rel="icon" sizes="512x512" href="https://mole.onge.uk/icon.png">
 	<link rel="apple-touch-icon" href="https://mole.onge.uk/icon.png">
-	<link rel="preload" href="fontyMcFontFace.woff2" as="font">
-	<link rel="prefetch" href="fontyMcFontFace.woff2">
 	<style>
+		@font-face {
+			font-display: "swap";
+			font-family: "fonty";
+			font-style: normal;
+			font-weight: normal;
+			src: url("./../public/fontyMcFontFace.woff2") format("woff2");
+		}
+
+		body,
+		button {
+			font-family: "fonty", "Comic Sans MS", "Arial";
+		}
 		:root {
 			--grass: #0fac38;
 		}
