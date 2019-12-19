@@ -60,7 +60,7 @@ function Game() {
 const GlobalStyle = createGlobalStyle`
 	html,
 	body {
-		height: 100vh;
+		height: 100%;
 		overflow: hidden;
 		overscroll-behavior: none;
 		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -90,3 +90,14 @@ if (loader) {
 // Render our app
 const rootElement = document.getElementById("app");
 render(<Game />, rootElement as Element);
+
+// Register service worker (not on dev/serve)
+if (process.env.NODE_ENV !== "development") {
+	if ("serviceWorker" in navigator) {
+		window.addEventListener("load", () => {
+			navigator.serviceWorker.register("/sw.js").catch(error => {
+				console.log("Registration failed: ", error);
+			});
+		});
+	}
+}

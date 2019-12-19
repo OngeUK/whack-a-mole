@@ -56,7 +56,7 @@ export const BtnLabel = styled.span`
 `;
 
 interface IProps {
-	event: any; // TODO - update this
+	event: Event;
 	label: string;
 	btnDelay: number;
 }

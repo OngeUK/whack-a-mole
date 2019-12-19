@@ -20,7 +20,6 @@ const Clock = () => {
 				if (newTime === 0) {
 					setCountdownState(false);
 
-					// TO DO - update this to fire after transitionend
 					setTimeout(() => {
 						setGameOverState(true);
 					}, 1000);

@@ -55,12 +55,8 @@ const drawStroke = keyframes`
 	}
 `;
 
-// TODO - fade in is glitchy in Firefox
 const fadeMound = keyframes`
 	0% {
-		opacity: 0;
-	}
-	30% {
 		opacity: 0;
 	}
 	100% {
@@ -69,7 +65,7 @@ const fadeMound = keyframes`
 `;
 
 const MolehillMount = styled.path`
-	animation: ${delay} ${props => props.id}s linear, ${fadeMound} 1.5s ease-out ${props => props.id}s;
+	animation: ${delay} ${props => props.id}s linear, ${fadeMound} 0.85s ease-in-out ${props => props.id}s;
 `;
 
 const MolehillGrass = styled.path`
@@ -77,7 +73,7 @@ const MolehillGrass = styled.path`
 `;
 
 const MolehillStroke = styled.path`
-	animation: ${delay} ${props => props.id}s linear, ${drawStroke} 0.5s ease-in-out ${props => props.id}s;
+	animation: ${delay} ${props => props.id}s linear, ${drawStroke} 0.4s ease-in-out ${props => props.id}s;
 	stroke-dasharray: 500;
 `;
 
