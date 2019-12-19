@@ -45,7 +45,7 @@
 		"not op_mini all"
 	],
 	"staticFiles": {
-		"staticPath": "public",
+		"staticPath": "static",
 		"watcherGlob": "**"
 	}
 }

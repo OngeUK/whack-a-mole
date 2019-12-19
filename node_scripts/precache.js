@@ -5,7 +5,7 @@ const buildSW = () => {
 	// This will return a Promise
 	return workboxBuild
 		.injectManifest({
-			swSrc: "public/sw.js",
+			swSrc: "static/sw.js",
 			swDest: "dist/sw.js",
 			globDirectory: "dist",
 			globPatterns: ["**/*.{mp3,js,woff2,html}"],

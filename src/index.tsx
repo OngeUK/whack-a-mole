@@ -95,7 +95,7 @@ render(<Game />, rootElement as Element);
 if (process.env.NODE_ENV !== "development") {
 	if ("serviceWorker" in navigator) {
 		window.addEventListener("load", () => {
-			navigator.serviceWorker.register("/sw.js").catch(error => {
+			navigator.serviceWorker.register("https://mole.onge.uk/sw.js").catch(error => {
 				console.log("Registration failed: ", error);
 			});
 		});
