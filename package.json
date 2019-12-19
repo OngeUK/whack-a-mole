@@ -32,7 +32,7 @@
 	},
 	"scripts": {
 		"start": "parcel ./public/index.html --open",
-		"build": "rimraf dist && parcel build ./public/index.html --no-source-maps"
+		"build": "rimraf dist && parcel build ./public/index.html --no-source-maps && node node_scripts/precache.js"
 	},
 	"alias": {
 		"react": "preact/compat",
@@ -43,5 +43,9 @@
 		"not dead",
 		"not ie <= 11",
 		"not op_mini all"
-	]
+	],
+	"staticFiles": {
+		"staticPath": "public",
+		"watcherGlob": "**"
+	}
 }
