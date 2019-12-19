@@ -8,7 +8,7 @@ import TitleScreen from "./title-screen";
 import { defaultContext, IContext, localStorageAvailable } from "./_utils";
 
 export const GameContext = createContext<[IContext]>([defaultContext]);
-export const gameLength = 25;
+export const gameLength = 20;
 const prevMutedPreference = localStorageAvailable() ? (localStorage.getItem("ismute") === "true" ? true : false) : false;
 
 function Game() {
