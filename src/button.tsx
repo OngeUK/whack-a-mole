@@ -5,7 +5,7 @@ const Button = (props: IProps) => {
 	const { label, event, btnDelay } = props;
 
 	return (
-		<Btn type="button" onClick={event} btnDelay={btnDelay}>
+		<Btn type="button" onMouseDown={event} onTouchStart={event} btnDelay={btnDelay}>
 			<BtnLabel>{label}</BtnLabel>
 			<svg xmlns="http://www.w3.org/2000/svg" style={{ width: "5.5rem" }} viewBox="-41.5 8.5 84 80">
 				<path
