@@ -8,7 +8,7 @@
 
 _Whack-a-mole_ is a basic version of the fairground amusement I build for my infant children to enjoy. As well as coding this offline-first PWA, I hand drew all the game sprites, recorded my own audio and even created my own font.
 
-This project was a good opportunity for me to re-visit using [Styled Components](https://www.styled-components.com/) and [Parcel](https://parceljs.org/).
+This project was a good opportunity for me to use (P)React hooks for the first time. Was also a chance for me to re-visit using [Styled Components](https://www.styled-components.com/) and [Parcel](https://parceljs.org/).
 
 ## Core technologies used
 
