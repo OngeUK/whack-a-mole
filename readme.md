@@ -13,5 +13,6 @@ This project was a good opportunity for me to use (P)React hooks for the first t
 ## Core technologies used
 
 -   [Preact](https://preactjs.com/)
+-   [TypeScript](https://www.typescriptlang.org/)
 -   [Styled Components](https://www.styled-components.com/)
 -   [Parcel](https://parceljs.org/)
